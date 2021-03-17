@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', [Validators.required, Validators.maxLength(30)]],
             lastName: ['', [Validators.required, Validators.maxLength(30)]],
-            surname: ['', [Validators.required, Validators.maxLength(30)]],
+            // surname: ['', [Validators.required, Validators.maxLength(30)]],
             mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
             email: [null, Validators.compose([Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)])],
             address: ['', Validators.required],
