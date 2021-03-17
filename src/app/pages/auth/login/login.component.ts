@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         if (getData) {
           const user = JSON.parse(getData);
           localStorage.setItem("id", user.id);
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashbaord/home';
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard/home';
             this.router.navigateByUrl(returnUrl);
         } else {
           this._toastr.error('Please Register Yourself First!', 'Error');

@@ -10,8 +10,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then((module) => module.AuthModule)
   },
   {
-    path: 'dashbaord',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then((module) => module.DashbaordModule)
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then((module) => module.DashboardModule)
   }
 ];
 

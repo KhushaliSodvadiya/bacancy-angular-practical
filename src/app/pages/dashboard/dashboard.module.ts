@@ -18,4 +18,4 @@ import { FooterComponent } from 'src/app/components/partials/footer/footer.compo
     DashboardRoutingModule,
   ]
 })
-export class DashbaordModule { }
+export class DashboardModule { }
