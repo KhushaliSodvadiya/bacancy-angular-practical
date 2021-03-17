@@ -2,15 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InterceptorService } from './services/interceptor.service';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ToastrModule } from 'ngx-toastr';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
-// Datepicker module
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-// Toast Module
-import { ToastrModule } from 'ngx-toastr';
 // Components 
 import { AppComponent } from './app.component';
+// Services
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
