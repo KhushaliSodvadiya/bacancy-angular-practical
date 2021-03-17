@@ -1,0 +1,115 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">Register</h4>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="firstName">First Name*</label>
+                    <input type="text" formControlName="firstName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        <div *ngIf="f.firstName.errors.maxlength">Maximun 30 characters are allowed.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name*</label>
+                    <input type="text" formControlName="lastName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                        <div *ngIf="f.lastName.errors.maxlength">Maximun 30 characters are allowed.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname*</label>
+                    <input type="text" formControlName="surname" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+                    <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                        <div *ngIf="f.surname.errors.required">Surname is required</div>
+                        <div *ngIf="f.surname.errors.maxlength">Maximun 30 characters are allowed.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile*</label>
+                    <input type="text" formControlName="mobile" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+                    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                        <div *ngIf="f.mobile.errors.required">Mobile is required</div>
+                        <div *ngIf="f.mobile.errors.minlength">Please enter 10 digits</div>
+                        <div *ngIf="f.mobile.errors.maxlength">Phone Number required
+                            10 Digits Only</div>
+                        <div *ngIf="f.mobile.hasError('pattern')">Only numbers are allowed.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address*</label>
+                    <input type="text" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.hasError('pattern')">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address*</label>
+                    <input type="text" formControlName="address" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                        <div *ngIf="f.address.errors.required">Address is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth*</label>
+                    <input class="form-control" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker
+                        formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+                    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                        <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div [ngClass]="{ 'is-invalid': submitted && f.profilePicture.errors }">
+                        <label for="profilePicture">Profile Picture*</label>
+                        <input type="file" #file formControlName="profilePicture" class="form-control"
+                            (change)="fileChangeEvent($event)" />
+                        <div class="row" style="margin-top: 15px;">
+                            <div *ngIf="imageChangedEvent" class="text-center col-md-8"
+                                style="width: 150px; height: 150px;">
+                                <h5>Crop Image</h5>
+                                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                                    [aspectRatio]="4 / 4" [resizeToWidth]="150" format="png"
+                                    (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+                                    (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+                                </image-cropper>
+                            </div>
+                            <div *ngIf="croppedImage" class="text-center col-md-4">
+                                <h5>Preview</h5>
+                                <img [src]="croppedImage" />
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="submitted && f.profilePicture.errors" class="invalid-feedback">
+                        <div *ngIf="f.profilePicture.errors.required">Profile Picture is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Register
+                    </button>
+                    <a routerLink="../login" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
