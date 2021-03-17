@@ -46,9 +46,7 @@ export class InterceptorService implements HttpInterceptor {
     }
 
     private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
-        const user = this.auth.userValue;
-        console.log("user",user);
-        
+        const user = this.auth.userValue;        
         return request.clone({
             headers: request.headers.set(this.AUTH_HEADER, 'bearer ' + user),
         });

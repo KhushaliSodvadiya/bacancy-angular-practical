@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           result.map(e => {
             const id = e.id
             localStorage.setItem("id", id);
-            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
             this.router.navigateByUrl(returnUrl);
           });
         } else {

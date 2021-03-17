@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/app/home/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'auth',
     loadChildren: () => import('./././pages/auth/auth.module').then((module) => module.AuthModule)

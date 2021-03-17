@@ -11,7 +11,7 @@ export class AuthenticationService {
     public user: Observable<User>;
 
     constructor(private http: HttpClient) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || '{}'));
+        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user') || 'null'));
         this.user = this.userSubject.asObservable();
     }
 
@@ -24,7 +24,7 @@ export class AuthenticationService {
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user.token));
-                this.userSubject.next(user);
+                this.userSubject.next(user.token);
                 return user;
             }));
     }
