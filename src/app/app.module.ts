@@ -11,16 +11,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ToastrModule } from 'ngx-toastr';
 // Components 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/app/home/home/home.component';
-import { HeaderComponent } from './components/partials/header/header.component';
-import { FooterComponent } from './components/partials/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,

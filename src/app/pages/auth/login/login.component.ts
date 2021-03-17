@@ -38,21 +38,23 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authenticationService.login({ email: this.fval.email.value, password: this.fval.password.value })
+    
+    const obj = {
+      email: this.fval.email.value, 
+      password: this.fval.password.value
+    }
+
+    this.authenticationService.login(obj)
       .pipe(first())
       .subscribe(response => {
         this.loading = false;
-        let getRegisteredData = [];
+        // let getRegisteredData = [];
         const getData: any = localStorage.getItem('registeredUser');
         if (getData) {
-          getRegisteredData.push(JSON.parse(getData));
-          const result = getRegisteredData.filter(o1 => o1.token === response.token);
-          result.map(e => {
-            const id = e.id
-            localStorage.setItem("id", id);
-            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+          const user = JSON.parse(getData);
+          localStorage.setItem("id", user.id);
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashbaord/home';
             this.router.navigateByUrl(returnUrl);
-          });
         } else {
           this._toastr.error('Please Register Yourself First!', 'Error');
           this.router.navigate(['/auth/registration']);
